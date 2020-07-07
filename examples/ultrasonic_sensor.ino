@@ -4,7 +4,7 @@
   HC-SR04 Module echo     ----> 3
 */
 
-#include <Arduino.h>// include the library
+#include <ultrasonic_sensor.h>// include the library
 
 ultrasonic_sensor u1.(2,3); // the trigger pin is conected to pin 2 and echo is connected to pin 3
 
