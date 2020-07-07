@@ -8,10 +8,27 @@ ultrasonic_sensor::ultrasonic_sensor(int trigger,int echo){
 
 }
 
+ultrasonic_sensor::ultrasonic_led(s0,s1,s2,pin){
+	selectPins[3] = {s0,s1,s2};
+	c_pin= pin;
+}
+
 ultrasonic_sensor::set(){
 	pinMode(tr,OUTPUT);
 	pinMode(ech,OUTPUT);
 }
+
+ultrasonic_sensor::set(bool led){
+	pinMode(tr,OUTPUT);
+	pinMode(ech,OUTPUT);
+	for (int i=0; i<3; i++)
+	{
+		pinMode(selectPins[i], OUTPUT);
+		digitalWrite(selectPins[i], LOW);
+	}
+	pinMode(zOutput, OUTPUT);
+}
+
 
 
 ultrasonic_sensor::ultrasonic_run(){
@@ -33,6 +50,53 @@ ultrasonic_sensor::ultrasonic_run(){
 		return over_limit;
 	else
 		return invalid;
+}
+
+ultrasonic_sensor::ultrasonic_run(bool led){
+	// sensor 1 values
+
+     digitalWrite(tr, LOW);
+     delayMicroseconds(2);
+     digitalWrite(tr, HIGH);
+     delayMicroseconds(10);
+     digitalWrite(tr, LOW);
+	cm = ((pulseIn(ech, HIGH)) / 29 / 2);
+
+
+	if(ultrasonic_sensor_threshold - ultrasonic_sensor_buffer < cm < ultrasonic_sensor_threshold + ultrasonic_sensor_buffer)
+
+		return at_limit;
+
+	else if(ultrasonic_sensor_threshold - ultrasonic_sensor_buffer > cm  ){
+
+		if (c_pin > 7) return; // Exit if pin is out of scope
+		for (int i=0; i<3; i++)
+		{
+			if (c_pin & (1<<i))
+				digitalWrite(selectPins[i], HIGH);
+			else
+				digitalWrite(selectPins[i], LOW);
+		}
+
+
+	 	return under_limit;
+	}
+	else if( cm > ultrasonic_sensor_threshold + ultrasonic_sensor_buffer){
+
+		if (c_pin > 7) return; // Exit if pin is out of scope
+		for (int i=0; i<3; i++)
+		{
+			if (c_pin & (1<<i))
+				digitalWrite(selectPins[i], HIGH);
+			else
+				digitalWrite(selectPins[i], LOW);
+		}
+
+		return over_limit;
+	}
+	else
+		return invalid;
+
 }
 
 ///*** Source code ***///

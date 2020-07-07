@@ -13,10 +13,10 @@ ultrasonic_sensor	KEYWORD1
 #######################################
 
 ultrasonic_run	KEYWORD2
+ultrasonic_led	KEYWORD2
 set	KEYWORD2
 
 
 #######################################
 # Constants (LITERAL1)
 #######################################
-
