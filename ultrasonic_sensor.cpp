@@ -9,7 +9,9 @@ ultrasonic_sensor::ultrasonic_sensor(int trigger,int echo){
 }
 
 ultrasonic_sensor::ultrasonic_led(int s0,int s1,int s2,int pin){
-	selectPins[3] = {s0,s1,s2};
+	selectPins[0] = s0;
+	selectPins[1] = s1;
+	selectPins[2] = s2;
 	c_pin= pin;
 }
 
@@ -26,7 +28,6 @@ ultrasonic_sensor::set(bool led){
 		pinMode(selectPins[i], OUTPUT);
 		digitalWrite(selectPins[i], LOW);
 	}
-	pinMode(zOutput, OUTPUT);
 }
 
 
