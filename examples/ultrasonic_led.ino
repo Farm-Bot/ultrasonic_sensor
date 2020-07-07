@@ -12,10 +12,11 @@
 #include <ultrasonic_sensor.h>// include the library
 
 ultrasonic_sensor u1(2,3); // the trigger pin is conected to pin 2 and echo is connected to pin 3
-u1.ultrasonic_led(4,5,6,6);
+
 
 
 void setup(){
+	u1.ultrasonic_led(4,5,6,6);
 	u1.set(u1.led);
 	u1.ultrasonic_sensor_threshold = 10; // defalt threshold distance 6cm
   	u1.ultrasonic_sensor_buffer = 4 // default buffer distance 2 cm
