@@ -6,7 +6,7 @@
 
 #include <ultrasonic_sensor.h>// include the library
 
-ultrasonic_sensor u1.(2,3); // the trigger pin is conected to pin 2 and echo is connected to pin 3
+ultrasonic_sensor u1(2,3); // the trigger pin is conected to pin 2 and echo is connected to pin 3
 
 
 void setup(){
