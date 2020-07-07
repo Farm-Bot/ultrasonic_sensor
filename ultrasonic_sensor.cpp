@@ -8,7 +8,7 @@ ultrasonic_sensor::ultrasonic_sensor(int trigger,int echo){
 
 }
 
-ultrasonic_sensor::ultrasonic_led(s0,s1,s2,pin){
+ultrasonic_sensor::ultrasonic_led(int s0,int s1,int s2,int pin){
 	selectPins[3] = {s0,s1,s2};
 	c_pin= pin;
 }

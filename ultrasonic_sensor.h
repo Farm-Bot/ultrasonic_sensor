@@ -8,7 +8,7 @@ class ultrasonic_sensor
 {
   public:
      ultrasonic_sensor(int trigger,int echo);
-     ultrasonic_led(s0,s1,s2,pin);
+     ultrasonic_led(int s0,int s1,int s2,int pin);
      set();
      set(bool led);
      ultrasonic_run();
